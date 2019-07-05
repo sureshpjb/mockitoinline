@@ -1,0 +1,7 @@
+If you run with PowerMockRunner, then it swallows the that InvocationTargetException and gives the actual exception wrapped inside it
+here is the code for that: https://github.com/quvdong/powermock-legacy/blob/master/PowerMock-Legacy/src/org/powermock/modules/junit4/internal/impl/PowerMockJUnit44RunnerDelegateImpl.java#L328
+But if you use PowerMockRule, since there is no such helping runner, the InvocationTargetException is returned as it is
+- this happens only when we are using Reflection to invoke a method and that method throws an exception
+To avoid this:
+either: 1. Use PowerMockRunner
+or 2. make use of ExpectedException
